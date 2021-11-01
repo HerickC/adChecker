@@ -16,4 +16,10 @@ use App\Http\Controllers\AdController;
 */
 
 Route::get('/listAds', [AdController::class, 'listAds']);
+Route::get('/uniqueId', [AdController::class, 'getAdUniqueCode']);
+Route::post('/image-list', [AdController::class, 'getImageItems']);
+Route::post('/set-image-list', [AdController::class, 'setImageItems']);
+
+Route::post('/upload-image', [AdController::class, 'preProcessImage']);
+
 Route::get('/resetAll', [AdController::class, 'resetAllAds']);

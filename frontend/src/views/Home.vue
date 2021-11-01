@@ -112,7 +112,7 @@ export default {
     getAds() {
       this.loading = true;
       axios
-        .get("http://localhost:8000/api/listAds")
+        .get(`${process.env.VUE_APP_API_HOST}/api/listAds`)
         .then((response) => {
           this.items = [];
 
@@ -132,7 +132,7 @@ export default {
       this.loading = true;
 
       axios
-        .get("http://localhost:8000/api/resetAll")
+        .get(`${process.env.VUE_APP_API_HOST}/api/resetAll`)
         .then((response) => {
           if (response.data.status) {
             this.getAds();

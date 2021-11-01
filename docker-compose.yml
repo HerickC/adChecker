@@ -21,6 +21,8 @@ services:
             - './backend:/var/www/html'
         networks:
             - sail
+        external_links:
+            - adchecker_ml.service_1:ml.service
         depends_on:
             - mysql
     mysql:
@@ -49,6 +51,8 @@ services:
             - ./frontend/:/srv/app
         networks:
             - sail
+        external_links:
+            - adchecker_backend_1:backend
         working_dir: /srv/app
         command: 'yarn serve'
     ml.service:
@@ -61,6 +65,10 @@ services:
             - './ml:/app'
         networks:
             - sail
+        external_links:
+            - adchecker_backend_1:backend
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
         depends_on:
             - mysql
 networks:
