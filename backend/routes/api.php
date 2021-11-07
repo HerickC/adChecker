@@ -21,5 +21,14 @@ Route::post('/image-list', [AdController::class, 'getImageItems']);
 Route::post('/set-image-list', [AdController::class, 'setImageItems']);
 
 Route::post('/upload-image', [AdController::class, 'preProcessImage']);
+Route::post('/new', [AdController::class, 'createNewAd']);
+
+Route::post('/check-image-image', [AdController::class, 'checkImageImage']);
+Route::post('/check-image-title', [AdController::class, 'checkImageTitle']);
+Route::post('/check-image-description', [AdController::class, 'checkImageDescription']);
+Route::post('/check-title-description', [AdController::class, 'checkTitleDescription']);
+Route::post('/check-final-score', [AdController::class, 'calculateOverall']);
+
+Route::post('/process-webhook', [AdController::class, 'getProcessedFeedback']);
 
 Route::get('/resetAll', [AdController::class, 'resetAllAds']);

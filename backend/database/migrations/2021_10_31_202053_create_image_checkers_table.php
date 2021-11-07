@@ -16,7 +16,13 @@ class CreateImageCheckersTable extends Migration
         Schema::create('image_checkers', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid');
+            $table->string('path');
             $table->json('items')->nullable();
+            $table->float('imageImage')->nullable();
+            $table->float('imageTitle')->nullable();
+            $table->float('imageDesc')->nullable();
+            $table->float('titleDesc')->nullable();
+            $table->float('overall')->nullable();
             $table->timestamps();
         });
     }

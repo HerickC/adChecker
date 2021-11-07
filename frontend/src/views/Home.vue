@@ -38,9 +38,11 @@
               >
                 <template v-slot:item.title="{ item }">
                   <v-card>
-                    <div class="d-flex flex-no-wrap justify-space-between">
+                    <div class="d-flex flex-no-wrap">
                       <v-avatar class="ma-3" size="125" tile>
                         <v-img
+                          contain
+                          max-width="125"
                           :src="`http://localhost:8000${item.image}`"
                         ></v-img>
                       </v-avatar>
