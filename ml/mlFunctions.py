@@ -8,10 +8,27 @@ import os
 import numpy as np
 from string import punctuation
 import re
+import os.path
+import urllib.request
 
-wordVectors = pickle.load( open("word_vectors.p", 'rb'))
+filesToDownload = [
+    {"name": "word_vectors.p", "link": "https://github.com/HerickC/ML-databases/raw/master/word_vectors.p"},
+    {"name": "resnet50_coco_best_v2.1.0.h5", "link": "https://github.com/HerickC/ML-databases/raw/master/resnet50_coco_best_v2.1.0.h5"},
+]
+
+def downloadDatabases():
+    for file in filesToDownload:
+        if not os.path.isfile(file['name']):
+            try:
+                urllib.request.urlretrieve(file['link'], file['name'])
+            except Exception:
+                pass
+
+downloadDatabases()
 
 def calcEmbeddingSimilarity(word1, word2):
+    downloadDatabases()
+    wordVectors = pickle.load( open("word_vectors.p", 'rb'))
     sent1 = re.findall(r"\w+(?:'\w+)?|[^\w\s]", word1)                        
     sent1 = [token.lower() for token in sent1]                                
     sent1 = [re.sub(r"\d+", '', token) for token in sent1]                    
@@ -52,6 +69,7 @@ def calcImageScore(imageData):
     return score/n if (n>0) else 0
 
 def imageAnalyze(image):
+    downloadDatabases()
     translator = Translator()
     names = []
     execution_path = os.getcwd()
